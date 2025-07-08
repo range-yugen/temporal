@@ -1,0 +1,49 @@
+version: '3.5'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: tuser
+      POSTGRES_PASSWORD: tpw
+      POSTGRES_DB: temporal
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tuser -d temporal"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+
+  temporal:
+    image: temporalio/auto-setup:1.27.0
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_SEEDS=postgres
+      - POSTGRES_USER=tuser
+      - POSTGRES_PWD=tpw
+      - POSTGRES_DB=temporal
+      - VISIBILITY_STORE=postgres12
+      - VISIBILITY_STORE_PASSWORD=tpw
+      - VISIBILITY_STORE_USERNAME=tuser
+      - VISIBILITY_STORE_HOST=postgres
+      - VISIBILITY_STORE_PORT=5432
+      - VISIBILITY_STORE_DB_NAME=temporal_visibility
+    ports:
+      - "7233:7233"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  temporal-ui:
+    image: temporalio/ui:latest
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    ports:
+      - "8080:8080"
+    depends_on:
+      - temporal
+
+volumes:
+  pgdata:
