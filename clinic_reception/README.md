@@ -7,7 +7,6 @@ A comprehensive clinic reception workflow system built with **Temporal**, **Fast
 - [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Data Setup](#data-setup)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
 - [Workflow Overview](#workflow-overview)
@@ -47,72 +46,10 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 git clone <repository_url>
-cd temporal/clinic_reception
+cd clinic_reception
 ```
 
-## Data Setup
-
-### 2. Create Data Directory and Download CSV Files
-
-#### Create Data Folder
-
-```bash
-mkdir data
-```
-
-#### Download CSV Data Files
-
-Download the following CSV files from the Google Drive folder and place them in the `data/` directory:
-
-**CSV Data Files**: [Download from Google Drive](https://drive.google.com/drive/folders/1z6TljJ3Z7l1Ttst4C_MjWutSitFkU8El)
-
-Required files:
-- `doctor_schedule.csv`
-- `patients.csv`
-- `appointments.csv`
-- `doctor_queue.csv`
-- `diagnosis_medicines.csv`
-
-### 3. Create Prescription Templates Directory
-
-#### Create Prescription Folder
-
-```bash
-mkdir prescription
-```
-
-#### Download Prescription Templates
-
-Download the prescription templates from the Google Drive folder and place them in the `prescription/` directory:
-
-**Prescription Templates**: [Download from Google Drive](https://drive.google.com/drive/folders/1JZvcQ9XJEDo5K82koXLN2mO2CZx7Sf52)
-
-### 4. Database Initialization
-
-#### Create Database Setup Script
-
-Create a file named `setup_database.py` in the root directory (`clinic_reception/`) with the following content:
-
-```python
-import sqlite3
-import pandas as pd
-
-# Connect to SQLite database
-conn = sqlite3.connect("clinic.db")
-
-# Load and insert each CSV table
-tables = ["doctor_schedule", "patients", "appointments", "doctor_queue", "diagnosis_medicines"]
-
-for table in tables:
-    df = pd.read_csv(f"data/{table}.csv")
-    df.to_sql(table, conn, if_exists="append", index=False)
-    print(f"Loaded {len(df)} records into {table} table")
-
-conn.commit()
-conn.close()
-print("Database setup completed successfully!")
-```
-
+### 2. Database Initialization
 #### Run Database Setup
 
 ```bash
@@ -121,7 +58,7 @@ python setup_database.py
 
 > **Note**: This will create a `clinic.db` SQLite database file with all the necessary tables and data.
 
-### 5. Backend Setup (FastAPI + Temporal)
+### 3. Backend Setup (FastAPI + Temporal)
 
 #### Create Virtual Environment
 
@@ -179,7 +116,7 @@ uvicorn api_server:app --reload
 > **Note**: Backend API will be available at [http://localhost:8000/docs](http://localhost:8000/docs)
 
 
-### 6. Frontend Setup (React)
+### 4. Frontend Setup (React)
 
 #### Navigate to Frontend Directory
 

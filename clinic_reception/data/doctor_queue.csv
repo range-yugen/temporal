@@ -1,0 +1,3 @@
+doctor_id,patient_id,queued_at,seen
+1,1,2025-07-03T13:50:00,no
+1,2,2025-07-03T13:55:00,no

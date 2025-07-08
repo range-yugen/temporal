@@ -1,0 +1,11 @@
+doctor_id,name,specialization,day_of_week,start_time,end_time
+1,Smith,Cardiology,Monday,09:00:00,21:00:00
+2,Johnson,Neurology,Monday,10:00:00,21:00:00
+3,Patel,Dermatology,Monday,08:00:00,21:00:00
+1,Smith,Cardiology,Tuesday,09:00:00,21:00:00
+2,Johnson,Neurology,Tuesday,10:00:00,21:00:00
+1,Smith,Cardiology,Thursday,10:00:00,21:00:00
+2,Johnson,Neurology,Thursday,10:00:00,21:00:00
+1,Smith,Cardiology,Friday,00:00:01,23:59:59
+1,Smith,Cardiology,Saturday,00:00:01,23:59:59
+1,Smith,Cardiology,Sunday,00:00:01,23:59:59

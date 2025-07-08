@@ -1,0 +1,5 @@
+patient_id,name,phone,gender,age,address
+1,Alice,1234567890,Female,35,"123 Elm Street, NY"
+2,Bob,9876543210,Male,39,"456 Elm Street, NY"
+3,Charlie,5551234567,Male,26,"789 Elm Street, NY"
+
