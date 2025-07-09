@@ -229,6 +229,12 @@ npm run dev
 - Schedule 15-minute slot
 - Show confirmation message
 
+**Appointment Exit Patient**
+- Generate initial prescription slip
+- Simulate consultation
+- Add diagnosis and medicines
+- Generate final prescription PDF
+
 ## Testing
 
 ### Manual Testing
