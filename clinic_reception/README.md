@@ -229,7 +229,7 @@ npm run dev
 - Schedule 15-minute slot
 - Show confirmation message
 
-**Appointment Exit Patient**
+**Patient Has Existing Appointment**
 - Generate initial prescription slip
 - Simulate consultation
 - Add diagnosis and medicines
